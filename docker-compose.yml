@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+    server:
+        build:
+            context: ./server
+            dockerfile: ./Dockerfile
+        image: node-stream/server
+        container_name: server
+        environment:
+            - PORT=8001
+        ports:
+            - 8001:8001
+        volumes: 
+            - ./server/src/:/usr/src/app/src
+            - /home/slugger/videos/:/media/videos
+        command: ["npm", "run", "start"]
+    frontend:
+        build:
+            context: ./frontend
+            dockerfile: ./Dockerfile
+        image: node-stream/frontend
+        container_name: frontend
+        depends_on: 
+            - server
+        ports:
+            - 3000:3000
+        volumes:
+            - ./frontend/src/:/usr/src/app/src
+        command: ["npm", "run", "start"]
