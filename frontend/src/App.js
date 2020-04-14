@@ -1,14 +1,14 @@
-import React from 'react';
-import './App.css';
-import { Video } from './components/video/Video';
-
-const directory = '/mnt/videos/sample1.mp4';
+import React from "react";
+import "../node_modules/bulma/css/bulma.css";
+import { BrowserRouter as Router } from "react-router-dom";
+import { AppLayout } from "./components/AppLayout/AppLayout";
+import { Routes } from "./routes/Routes";
 
 function App() {
   return (
-    <div className="App">
-      <Video source={directory} />
-    </div>
+    <Router>
+      <AppLayout><Routes /></AppLayout>
+    </Router>
   );
 }
 
