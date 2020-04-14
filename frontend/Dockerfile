@@ -6,7 +6,6 @@ WORKDIR /usr/src/app
 COPY --chown=node:node package*.json ./
 
 RUN npm i
-RUN npm i react-scripts@3.4.1 -g
 
 ENV NODE_ENV=development
 ENV CI=true

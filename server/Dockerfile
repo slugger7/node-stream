@@ -10,6 +10,6 @@ RUN npm i
 ENV NODE_ENV=development
 COPY --chown=node:node ./src ./src
 
-EXPOSE 3000
+EXPOSE 8001
 
 CMD ["npm", "run", "start"]
