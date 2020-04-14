@@ -9,9 +9,12 @@ RUN npm i
 RUN npm i react-scripts@3.4.1 -g
 
 ENV NODE_ENV=development
+ENV CI=true
 COPY --chown=node:node ./src ./src
 COPY --chown=node:node ./public ./public
 
 RUN npm run build
 
 EXPOSE 3000
+
+CMD ["npm", "run", "start"]

@@ -16,7 +16,6 @@ services:
         volumes: 
             - ./server/src/:/usr/src/app/src
             - ~/Videos/:/mnt/videos
-        command: ["npm", "run", "start"]
     frontend:
         build:
             context: ./frontend
@@ -29,4 +28,3 @@ services:
             - 3000:3000
         volumes:
             - ./frontend/src/:/usr/src/app/src
-        command: ["npm", "run", "start"]
