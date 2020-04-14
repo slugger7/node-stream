@@ -2,4 +2,4 @@
 GET http://localhost:8001/
 
 ### List Directory
-GET http://localhost:3000/list-directory/%2F
+GET http://localhost:8001/list-directory/%2F
