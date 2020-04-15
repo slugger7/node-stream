@@ -1,6 +1,7 @@
 const { readdirSync, statSync } = require("fs");
 const path = require("path");
 const videoExtensions = require("../videoExtensions.json");
+const { traverseDirectory } = require("../traverseDirectory");
 
 const isFilePredicate = (dir, content) =>
   statSync(path.join(dir, content)).isFile();
@@ -27,12 +28,22 @@ const fs = (app) => {
     });
   });
 
-  app.get(`${base}/ls/:directory`, (req, res) => {
-    const { directory } = req.params;
+  app.get(`${base}/ls`, (req, res) => {
+    const { dir } = req.query;
     const contents = readdirSync(!!directory ? directory : "/");
     res.json({
-      path: directory,
+      path: dir,
       contents,
+    });
+  });
+
+  app.get(`${base}/lsr`, (req, res) => {
+    const { dir } = req.query;
+    const files = traverseDirectory(dir);
+    res.json({
+      path: dir,
+      content: files,
+      count: files.length
     });
   });
 };
