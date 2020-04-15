@@ -1,7 +1,16 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const helmet = require('helmet');
+const morgan = require('morgan');
 const fs = require('fs');
 const path = require('path');
+
 const app = express();
+app.use(helmet());
+app.use(bodyParser.json());
+app.use(cors());
+app.use(morgan('combined'));
 
 const port = process.env.PORT || 3000;
 
@@ -13,7 +22,6 @@ app.get('/', function(req, res) {
 
 app.get('/list-directory/:directory', (req, res) => {
     const { directory } = req.params;
-    console.log('List directory', directory);
     const directories = fs.readdirSync(!!directory ? directory : '/');
     res.json({
         path: directory,

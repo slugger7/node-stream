@@ -4,11 +4,22 @@
   "description": "A project to handle a few videos and stream them to a react frontend",
   "main": "index.js",
   "scripts": {
+    "logs": "docker-compose logs -f",
+    "start": "docker-compose up -d",
+    "stop": "docker-compose stop",
+    "down": "docker-compose down",
+    "build": "docker-compose build",
+    "rebuild": "npm run stop && npm run build && npm run start",
     "frontend": "docker-compose up -d frontend",
     "frontend:stop": "docker-compose stop frontend",
     "frontend:restart": "docker-compose restart frontend",
     "frontend:build": "docker-compose build frontend",
-    "frontend:rebuild": "npm run frontend:stop && npm run frontend:build && npm run frontend"
+    "frontend:rebuild": "npm run frontend:stop && npm run frontend:build && npm run frontend",
+    "server": "docker-compose up -d server",
+    "server:stop": "docker-compose stop",
+    "server:restart": "docker-compose restart server",
+    "server:build": "docker-compose build server",
+    "server:rebuild": "npm run server:stop && npm run server:build && npm run server"
   },
   "repository": {
     "type": "git",
@@ -19,5 +30,6 @@
   "bugs": {
     "url": "https://github.com/slugger7/node-stream/issues"
   },
-  "homepage": "https://github.com/slugger7/node-stream#readme"
+  "homepage": "https://github.com/slugger7/node-stream#readme",
+  "dependencies": {}
 }
