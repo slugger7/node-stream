@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const fs = require('fs');
 const path = require('path');
+const { services } = require('./services');
 
 const app = express();
 app.use(helmet());
@@ -19,6 +20,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname + '/index.html'));
 });
+
+services(app);
 
 app.get('/list-directory/:directory', (req, res) => {
     const { directory } = req.params;

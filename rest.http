@@ -2,4 +2,7 @@
 GET http://localhost:8001/
 
 ### List Directory
-GET http://localhost:8001/list-directory/%2F
+GET http://localhost:8001/list-directory/%2Fmnt
+
+### Videos
+GET http://localhost:8001/fs/videos?dir=%2Fmnt%2Fvideos
