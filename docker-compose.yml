@@ -1,23 +1,6 @@
 version: '3'
 
 services:
-    server:
-        build:
-            context: ./server
-            dockerfile: ./Dockerfile
-        image: node-stream/server
-        container_name: server
-        environment:
-            - PORT=8001
-            - ADMIN_USER=admin
-            - ADMIN_PASSWORD=admin1234
-        ports:
-            - 8001:8001
-        volumes: 
-            - ./server/src/:/usr/src/app/src
-            - ~/Videos/:/mnt/videos
-            - /mnt/samba/srv2tb/My Videos/Movies:/mnt/movies
-            - ./server_config:/data/config
     frontend:
         build:
             context: ./frontend
@@ -32,6 +15,26 @@ services:
             - 3000:3000
         volumes:
             - ./frontend/src/:/usr/src/app/src
+    server:
+        build:
+            context: ./server
+            dockerfile: ./Dockerfile
+        image: node-stream/server
+        container_name: server
+        environment:
+            - PORT=8001
+            - ADMIN_USER=admin
+            - ADMIN_PASSWORD=admin1234
+            - GRAPHDB_URL=bolt://graphdb
+        ports:
+            - 8001:8001
+        volumes: 
+            - ./server/src/:/usr/src/app/src
+            - ~/Videos/:/mnt/videos
+            - /mnt/samba/srv2tb/My Videos/Movies:/mnt/movies
+            - ./server_config:/data/config
+        depends_on: 
+            - graphdb
     graphdb:
         image: neo4j
         container_name: graphdb
@@ -39,6 +42,6 @@ services:
             - 7474:7474
             - 7687:7687
         environment:
-            - NEO4J_AUTH=none
+            - NEO4J_AUTH=neo4j/password
         volumes:
             - /data

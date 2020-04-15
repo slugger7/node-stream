@@ -16,7 +16,7 @@
     "frontend:build": "docker-compose build frontend",
     "frontend:rebuild": "npm run frontend:stop && npm run frontend:build && npm run frontend",
     "server": "docker-compose up -d server",
-    "server:stop": "docker-compose stop",
+    "server:stop": "docker-compose stop server",
     "server:restart": "docker-compose restart server",
     "server:build": "docker-compose build server",
     "server:rebuild": "npm run server:stop && npm run server:build && npm run server"
