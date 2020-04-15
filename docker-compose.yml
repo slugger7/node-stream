@@ -16,6 +16,7 @@ services:
         volumes: 
             - ./server/src/:/usr/src/app/src
             - ~/Videos/:/mnt/videos
+            - /mnt/samba/srv2tb/My Videos/Movies:/mnt/movies
             - ./server_config:/data/config
     frontend:
         build:
@@ -31,3 +32,13 @@ services:
             - 3000:3000
         volumes:
             - ./frontend/src/:/usr/src/app/src
+    graphdb:
+        image: neo4j
+        container_name: graphdb
+        ports:
+            - 7474:7474
+            - 7687:7687
+        environment:
+            - NEO4J_AUTH=none
+        volumes:
+            - /data
