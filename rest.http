@@ -9,3 +9,9 @@ GET http://localhost:8001/fs/lsr?dir=%2Fmnt
 
 ### Videos
 GET http://localhost:8001/fs/videos?dir=%2Fmnt%2Fvideos
+
+### Video Find
+GET http://localhost:8001/video/find?search=%7B%22title%22%3A%22Nitro%20Circus%20Greatest%20Hits%20%5B2010%20DVD%5D%22%7D
+
+### Video Find no query
+GET http://localhost:8001/video/find

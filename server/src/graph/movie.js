@@ -1,11 +1,11 @@
-const { graph } = require('./index');
+const { graph, sanitizeQueryString, extractFields } = require('./index');
 
 const findMovies = graph(async (session, search) => {
     const query = `MATCH (m:movie ${JSON.stringify(search)}) RETURN m`;
 
-    const result = await session.run(query);
+    const result = await session.run(sanitizeQueryString(query));
 
-    return result;
+    return extractFields(result);
 });
 
 const createMovies = graph(async (session, movies) => {
