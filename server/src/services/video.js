@@ -1,5 +1,6 @@
 const { statSync, createReadStream } = require("fs");
 
+const base = '/video';
 const video = (app) => {
   app.get("/video/:filename", function (req, res) {
     const { filename } = req.params;

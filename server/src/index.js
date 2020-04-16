@@ -4,6 +4,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const path = require("path");
+const { connectGraph } = require('./graph');
 const { services } = require("./services");
 
 const app = express();
@@ -14,12 +15,9 @@ app.use(morgan("combined"));
 
 const port = process.env.PORT || 3000;
 
-app.use(express.static(path.join(__dirname, "public")));
-
+connectGraph(app);
 services(app);
 
 app.listen(port, function () {
   console.log(`Listening on port ${port}!`);
 });
-
-require('./graph');
